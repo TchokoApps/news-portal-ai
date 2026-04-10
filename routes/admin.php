@@ -10,6 +10,7 @@ Route::group([
     'as' => 'admin.',
 ], function () {
     Route::get('/login', [AdminAuthenticationController::class, 'login'])->name('login');
+    Route::post('/login', [AdminAuthenticationController::class, 'handleLogin'])->name('handle-login');
 });
 
 // Protected Admin Routes (with admin middleware)
