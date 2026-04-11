@@ -11,6 +11,10 @@ Route::group([
 ], function () {
     Route::get('/login', [AdminAuthenticationController::class, 'login'])->name('login');
     Route::post('/login', [AdminAuthenticationController::class, 'handleLogin'])->name('handle-login');
+
+    // Password Reset Routes
+    Route::get('/forgot-password', [AdminAuthenticationController::class, 'forgotPassword'])->name('forgot-password');
+    Route::post('/forgot-password', [AdminAuthenticationController::class, 'sendResetLink'])->name('forget-password-send');
 });
 
 // Protected Admin Routes (with admin middleware)

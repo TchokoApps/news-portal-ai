@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Admin Login &mdash; News Portal</title>
+  <title>Forgot Password &mdash; News Portal</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -24,55 +24,62 @@
               <img src="{{ asset('admin/assets/img/stisla-fill.svg') }}" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
+            @if ($errors->any())
+              <div class="alert alert-danger alert-dismissible show" role="alert">
+                <div class="alert-body">
+                  <strong>Error!</strong>
+                  <ul class="mb-0 mt-2">
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
+
+            @if (session('status'))
+              <div class="alert alert-success alert-dismissible show" role="alert">
+                <div class="alert-body">
+                  {{ session('status') }}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
+
             <div class="card card-primary">
-              <div class="card-header"><h4>Admin Login</h4></div>
+              <div class="card-header"><h4>Forgot Password</h4></div>
 
               <div class="card-body">
-                <form method="POST" action="{{ route('admin.handle-login') }}" class="needs-validation" novalidate="">
+                <p class="text-muted mb-4">
+                  Enter your email address and we'll send you a link to reset your password.
+                </p>
+
+                <form method="POST" action="{{ route('admin.forget-password-send') }}" class="needs-validation" novalidate="">
                   @csrf
                   <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Email Address</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" tabindex="1" required autofocus>
                     @error('email')
-                      <span class="invalid-feedback" role="alert">
+                      <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
                       </span>
                     @enderror
                   </div>
 
                   <div class="form-group">
-                    <div class="d-block">
-                    	<label for="password" class="control-label">Password</label>
-                      <div class="float-right">
-                        <a href="{{ route('admin.forgot-password') }}" class="text-small">
-                          Forgot Password?
-                        </a>
-                      </div>
-                    </div>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2" required>
-                    @error('password')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="2">
+                      Send Reset Link
                     </button>
                   </div>
                 </form>
               </div>
             </div>
+
             <div class="mt-5 text-muted text-center">
+              <p>
+                Remember your password? <a href="{{ route('admin.login') }}" class="font-weight-bold">Back to Login</a>
+              </p>
               <div class="simple-footer">
                 Copyright &copy; Web Solutions
               </div>
