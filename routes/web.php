@@ -7,7 +7,7 @@ Route::get('/', function () {
     if (auth()->check()) {
         return redirect()->route('dashboard');
     }
-    return view('welcome');
+    return view('frontend.layouts.master');
 })->name('home');
 
 Route::get('/dashboard', function () {
