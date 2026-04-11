@@ -15,6 +15,8 @@ Route::group([
     // Password Reset Routes
     Route::get('/forgot-password', [AdminAuthenticationController::class, 'forgotPassword'])->name('forgot-password');
     Route::post('/forgot-password', [AdminAuthenticationController::class, 'sendResetLink'])->name('forget-password-send');
+    Route::get('/password/reset/{token}', [AdminAuthenticationController::class, 'resetPassword'])->name('password.reset');
+    Route::post('/password/reset', [AdminAuthenticationController::class, 'handleResetPassword'])->name('password.reset.send');
 });
 
 // Protected Admin Routes (with admin middleware)

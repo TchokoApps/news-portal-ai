@@ -99,7 +99,7 @@
             <p>To reset your password, click the button below:</p>
 
             <div class="button-container">
-                <a href="{{ $resetUrl }}" class="button">Reset Your Password</a>
+                <a href="{{ $resetUrl }}" class="button">Click here to Reset</a>
             </div>
 
             <p style="margin-top: 20px; font-size: 14px; color: #999;">Or copy and paste this link in your browser:</p>

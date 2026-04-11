@@ -28,7 +28,7 @@ class AdminSendResetLink extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Reset Your Password',
+            subject: 'Admin Password Reset Notification',
         );
     }
 

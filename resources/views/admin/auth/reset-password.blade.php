@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Admin Login &mdash; News Portal</title>
+  <title>Reset Password &mdash; News Portal</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -24,24 +24,32 @@
               <img src="{{ asset('admin/assets/img/stisla-fill.svg') }}" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
-            @if (session('status'))
-              <div class="alert alert-success alert-dismissible show" role="alert" style="color: green;">
+            @if ($errors->any())
+              <div class="alert alert-danger alert-dismissible show" role="alert">
                 <div class="alert-body">
-                  {{ session('status') }}
+                  <strong>Error!</strong>
+                  <ul class="mb-0 mt-2">
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             @endif
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Admin Login</h4></div>
+              <div class="card-header">
+                <h4>Reset Password</h4>
+              </div>
 
               <div class="card-body">
-                <form method="POST" action="{{ route('admin.handle-login') }}" class="needs-validation" novalidate="">
+                <form method="POST" action="{{ route('admin.password.reset.send') }}">
                   @csrf
+
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" tabindex="1" required autofocus>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ request('email') }}" readonly>
                     @error('email')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -50,15 +58,8 @@
                   </div>
 
                   <div class="form-group">
-                    <div class="d-block">
-                    	<label for="password" class="control-label">Password</label>
-                      <div class="float-right">
-                        <a href="{{ route('admin.forgot-password') }}" class="text-small">
-                          Forgot Password?
-                        </a>
-                      </div>
-                    </div>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2" required>
+                    <label for="password">New Password</label>
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autofocus>
                     @error('password')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -67,24 +68,29 @@
                   </div>
 
                   <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
-                    </div>
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required>
+                    @error('password_confirmation')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
                   </div>
 
+                  <!-- Hidden Token Field -->
+                  <input type="hidden" name="token" value="{{ $token }}">
+
                   <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                      Save Password
                     </button>
                   </div>
                 </form>
               </div>
             </div>
+
             <div class="mt-5 text-muted text-center">
-              <div class="simple-footer">
-                Copyright &copy; Web Solutions
-              </div>
+              Remembered your password? <a href="{{ route('admin.login') }}">Back to Login</a>
             </div>
           </div>
         </div>
@@ -101,8 +107,13 @@
   <script src="{{ asset('admin/assets/modules/moment.min.js') }}"></script>
   <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
 
+  <!-- JS Libraies -->
+
+  <!-- Page Specific JS File -->
+
   <!-- Template JS File -->
   <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
   <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
 </body>
+
 </html>
