@@ -22,7 +22,8 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        return view('admin.language.create');
+        $languages = Language::all();
+        return view('admin.language.create', compact('languages'));
     }
 
     /**
@@ -35,6 +36,7 @@ class LanguageController extends Controller
             'code' => 'required|string|unique:languages',
             'flag_code' => 'nullable|string',
             'is_active' => 'boolean',
+            'is_default' => 'boolean',
         ]);
 
         Language::create($validated);
@@ -67,6 +69,7 @@ class LanguageController extends Controller
             'code' => 'required|string|unique:languages,code,' . $language->id,
             'flag_code' => 'nullable|string',
             'is_active' => 'boolean',
+            'is_default' => 'boolean',
         ]);
 
         $language->update($validated);

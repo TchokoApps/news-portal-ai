@@ -56,12 +56,25 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="is_default">Set Default Language</label>
+                                <select class="form-control @error('is_default') is-invalid @enderror"
+                                        id="is_default" name="is_default">
+                                    <option value="0" @if(!$language->is_default) selected @endif>-- No --</option>
+                                    <option value="1" @if($language->is_default) selected @endif>-- Yes --</option>
+                                </select>
+                                <small class="form-text text-muted">Set this as the default language for the website</small>
+                                @error('is_default')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label for="is_active">Status</label>
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" value="1"
-                                           @if($language->is_active) checked @endif>
-                                    <label class="custom-control-label" for="is_active">Active</label>
-                                </div>
+                                <select class="form-control @error('is_active') is-invalid @enderror"
+                                        id="is_active" name="is_active">
+                                    <option value="1" @if($language->is_active) selected @endif>Active</option>
+                                    <option value="0" @if(!$language->is_active) selected @endif>Inactive</option>
+                                </select>
                             </div>
 
                             <div class="form-group">

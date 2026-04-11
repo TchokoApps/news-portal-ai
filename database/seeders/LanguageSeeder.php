@@ -18,6 +18,7 @@ class LanguageSeeder extends Seeder
             'code' => 'en',
             'flag_code' => 'us',
             'is_active' => true,
+            'is_default' => true,
         ]);
 
         Language::create([
@@ -25,6 +26,7 @@ class LanguageSeeder extends Seeder
             'code' => 'zh',
             'flag_code' => 'cn',
             'is_active' => true,
+            'is_default' => false,
         ]);
 
         Language::create([
@@ -32,6 +34,7 @@ class LanguageSeeder extends Seeder
             'code' => 'ko',
             'flag_code' => 'kr',
             'is_active' => true,
+            'is_default' => false,
         ]);
 
         Language::create([
@@ -39,6 +42,7 @@ class LanguageSeeder extends Seeder
             'code' => 'es',
             'flag_code' => 'es',
             'is_active' => true,
+            'is_default' => false,
         ]);
 
         Language::create([
@@ -46,6 +50,7 @@ class LanguageSeeder extends Seeder
             'code' => 'fr',
             'flag_code' => 'fr',
             'is_active' => true,
+            'is_default' => false,
         ]);
     }
 }

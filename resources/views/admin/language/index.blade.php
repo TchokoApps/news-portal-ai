@@ -32,6 +32,7 @@
                                             <th>Language Name</th>
                                             <th>Language Code</th>
                                             <th>Flag Code</th>
+                                            <th>Default</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -43,6 +44,13 @@
                                             <td>{{ $language->name }}</td>
                                             <td><span class="badge badge-info">{{ $language->code }}</span></td>
                                             <td>{{ $language->flag_code ?? 'N/A' }}</td>
+                                            <td>
+                                                @if($language->is_default)
+                                                    <span class="badge badge-primary"><i class="fas fa-check"></i> Yes</span>
+                                                @else
+                                                    <span class="badge badge-secondary">No</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if($language->is_active)
                                                     <span class="badge badge-success">Active</span>
