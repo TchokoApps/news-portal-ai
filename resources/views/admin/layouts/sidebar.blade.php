@@ -10,7 +10,10 @@
             </div>
             <ul class="sidebar-menu">
                 <li class="dropdown">
-                    <a href="{{ route('dashboard') }}" class="nav-link"><span>Dashboard</span></a>
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link"><span>Dashboard</span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="{{ route('admin.language.index') }}" class="nav-link"><span>Languages</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><span>Layout</span></a>
