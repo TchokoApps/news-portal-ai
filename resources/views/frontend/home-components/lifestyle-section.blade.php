@@ -201,13 +201,31 @@
 
                 @include('frontend.home-components.small-advertisement-banner')
 
-                <!-- Additional content sections -->
+                @include('frontend.home-components.technology-grid-imageleft')
             </div>
 
             <div class="col-md-4">
-                <!-- Sidebar comes here -->
+                <div class="sticky-top">
+                    @include('frontend.home-components.sidebar-latest-posts')
+
+                    @include('frontend.home-components.sidebar-social-media')
+
+                    @include('frontend.home-components.sidebar-tags')
+
+                    @include('frontend.home-components.sidebar-advertisement')
+
+                    @include('frontend.home-components.sidebar-newsletter')
+                </div>
             </div>
+            </div>
+
+            <div class="mx-auto">
+                @include('frontend.home-components.pagination')
+            </div>
+
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
-<!-- End Lifestyle section -->
+</section>
+<!-- End Popular news category -->
