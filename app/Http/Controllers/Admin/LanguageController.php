@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminLanguageStoreRequest;
+use App\Http\Requests\AdminLanguageUpdateRequest;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -22,33 +24,26 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        $languages = Language::all();
-        return view('admin.language.create', compact('languages'));
+        return view('admin.language.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AdminLanguageStoreRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|unique:languages',
-            'code' => 'required|string|unique:languages',
-            'flag_code' => 'nullable|string',
-            'is_active' => 'boolean',
-            'is_default' => 'boolean',
-        ]);
+        try {
+            $validated = $request->validated();
 
-        Language::create($validated);
-        return redirect()->route('admin.language.index')->with('success', 'Language created successfully.');
-    }
+            Language::create($validated);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Language $language)
-    {
-        return view('admin.language.show', compact('language'));
+            return redirect()->route('admin.language.index')
+                           ->with('success', __('languages.created_successfully'));
+        } catch (\Exception $e) {
+            return redirect()->back()
+                           ->with('error', __('languages.creation_failed'))
+                           ->withInput();
+        }
     }
 
     /**
@@ -62,18 +57,20 @@ class LanguageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Language $language)
+    public function update(AdminLanguageUpdateRequest $request, Language $language)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|unique:languages,name,' . $language->id,
-            'code' => 'required|string|unique:languages,code,' . $language->id,
-            'flag_code' => 'nullable|string',
-            'is_active' => 'boolean',
-            'is_default' => 'boolean',
-        ]);
+        try {
+            $validated = $request->validated();
 
-        $language->update($validated);
-        return redirect()->route('admin.language.index')->with('success', 'Language updated successfully.');
+            $language->update($validated);
+
+            return redirect()->route('admin.language.index')
+                           ->with('success', __('languages.updated_successfully'));
+        } catch (\Exception $e) {
+            return redirect()->back()
+                           ->with('error', __('languages.update_failed'))
+                           ->withInput();
+        }
     }
 
     /**
@@ -81,7 +78,26 @@ class LanguageController extends Controller
      */
     public function destroy(Language $language)
     {
-        $language->delete();
-        return redirect()->route('admin.language.index')->with('success', 'Language deleted successfully.');
+        try {
+            // Prevent deletion of default language
+            if ($language->is_default) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => __('languages.cannot_delete_default'),
+                ], 409);
+            }
+
+            $language->delete();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => __('languages.deleted_successfully'),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => __('languages.deletion_failed'),
+            ], 500);
+        }
     }
 }
