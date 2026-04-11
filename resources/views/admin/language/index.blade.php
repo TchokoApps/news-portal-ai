@@ -122,9 +122,6 @@
                     $.ajax({
                         url: deleteUrl,
                         type: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
                         success: function(response) {
                             Swal.fire({
                                 title: "{{ __('common.success') }}",
@@ -136,13 +133,22 @@
                             });
                         },
                         error: function(xhr) {
-                            const response = JSON.parse(xhr.responseText);
-                            Swal.fire({
-                                title: "{{ __('common.error') }}",
-                                text: response.message || "{{ __('languages.deletion_failed') }}",
-                                icon: 'error',
-                                confirmButtonText: "{{ __('common.ok') }}"
-                            });
+                            try {
+                                const response = JSON.parse(xhr.responseText);
+                                Swal.fire({
+                                    title: "{{ __('common.error') }}",
+                                    text: response.message || "{{ __('languages.deletion_failed') }}",
+                                    icon: 'error',
+                                    confirmButtonText: "{{ __('common.ok') }}"
+                                });
+                            } catch(e) {
+                                Swal.fire({
+                                    title: "{{ __('common.error') }}",
+                                    text: "{{ __('languages.deletion_failed') }}",
+                                    icon: 'error',
+                                    confirmButtonText: "{{ __('common.ok') }}"
+                                });
+                            }
                         }
                     });
                 }
