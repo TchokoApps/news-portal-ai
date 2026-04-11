@@ -36,9 +36,9 @@ class SendResetLinkRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'Please provide your email address.',
-            'email.email' => 'Please provide a valid email address.',
-            'email.exists' => 'Email not found in our system.',
+            'email.required' => __('Please provide your email address.'),
+            'email.email' => __('Please provide a valid email address.'),
+            'email.exists' => __('Email not found in our system.'),
         ];
     }
 }

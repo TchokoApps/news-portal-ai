@@ -34,13 +34,13 @@
             @endif
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Admin Login</h4></div>
+              <div class="card-header"><h4>{{ __('Admin Login') }}</h4></div>
 
               <div class="card-body">
                 <form method="POST" action="{{ route('admin.handle-login') }}" class="needs-validation" novalidate="">
                   @csrf
                   <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" tabindex="1" required autofocus>
                     @error('email')
                       <span class="invalid-feedback" role="alert">
@@ -51,10 +51,10 @@
 
                   <div class="form-group">
                     <div class="d-block">
-                    	<label for="password" class="control-label">Password</label>
+                    	<label for="password" class="control-label">{{ __('Password') }}</label>
                       <div class="float-right">
                         <a href="{{ route('admin.forgot-password') }}" class="text-small">
-                          Forgot Password?
+                          {{ __('Forgot Password?') }}
                         </a>
                       </div>
                     </div>
@@ -69,13 +69,13 @@
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
+                      <label class="custom-control-label" for="remember-me">{{ __('Remember Me') }}</label>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
+                      {{ __('Login') }}
                     </button>
                   </div>
                 </form>
@@ -83,7 +83,7 @@
             </div>
             <div class="mt-5 text-muted text-center">
               <div class="simple-footer">
-                Copyright &copy; Web Solutions
+                {{ __('Copyright © Web Solutions') }}
               </div>
             </div>
           </div>

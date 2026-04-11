@@ -27,7 +27,7 @@
             @if ($errors->any())
               <div class="alert alert-danger alert-dismissible show" role="alert">
                 <div class="alert-body">
-                  <strong>Error!</strong>
+                  <strong>{{ __('Error!') }}</strong>
                   <ul class="mb-0 mt-2">
                     @foreach ($errors->all() as $error)
                       <li>{{ $error }}</li>
@@ -40,7 +40,7 @@
 
             <div class="card card-primary">
               <div class="card-header">
-                <h4>Reset Password</h4>
+                <h4>{{ __('Reset Password') }}</h4>
               </div>
 
               <div class="card-body">
@@ -48,7 +48,7 @@
                   @csrf
 
                   <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ request('email') }}" readonly>
                     @error('email')
                       <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="password">New Password</label>
+                    <label for="password">{{ __('New Password') }}</label>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autofocus>
                     @error('password')
                       <span class="invalid-feedback" role="alert">
@@ -68,7 +68,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="password_confirmation">Confirm Password</label>
+                    <label for="password_confirmation">{{ __('Confirm Password') }}</label>
                     <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required>
                     @error('password_confirmation')
                       <span class="invalid-feedback" role="alert">
@@ -82,7 +82,7 @@
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">
-                      Save Password
+                      {{ __('Save Password') }}
                     </button>
                   </div>
                 </form>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="mt-5 text-muted text-center">
-              Remembered your password? <a href="{{ route('admin.login') }}">Back to Login</a>
+              {{ __('Remembered your password?') }} <a href="{{ route('admin.login') }}">{{ __('Back to Login') }}</a>
             </div>
           </div>
         </div>

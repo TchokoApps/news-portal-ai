@@ -39,7 +39,7 @@ class AdminAuthenticationController extends Controller
         $admin = Admin::where('email', $request->email)->first();
 
         if (!$admin) {
-            return back()->withErrors(['email' => 'Email not found in our system.']);
+            return back()->withErrors(['email' => __('Email not found in our system.')]);
         }
 
         // Generate a random token
@@ -52,7 +52,7 @@ class AdminAuthenticationController extends Controller
         // Send the reset link email
         Mail::to($admin->email)->send(new AdminSendResetLink($admin, $token));
 
-        return back()->with('status', 'Password reset link has been sent to your email address.');
+        return back()->with('status', __('Password reset link has been sent to your email address.'));
     }
 
     public function resetPassword(string $token): View
@@ -74,7 +74,7 @@ class AdminAuthenticationController extends Controller
 
         // If admin not found, token is invalid
         if (!$admin) {
-            return back()->withErrors(['token' => 'The reset token is invalid or has expired.']);
+            return back()->withErrors(['token' => __('The reset token is invalid or has expired.')]);
         }
 
         // Update the password
@@ -87,6 +87,6 @@ class AdminAuthenticationController extends Controller
         $admin->save();
 
         // Redirect to login with success message
-        return redirect()->route('admin.login')->with('status', 'Password reset successfully. Please login with your new password.');
+        return redirect()->route('admin.login')->with('status', __('Password reset successfully. Please login with your new password.'));
     }
 }

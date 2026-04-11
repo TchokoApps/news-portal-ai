@@ -27,7 +27,7 @@
             @if ($errors->any())
               <div class="alert alert-danger alert-dismissible show" role="alert">
                 <div class="alert-body">
-                  <strong>Error!</strong>
+                  <strong>{{ __('Error!') }}</strong>
                   <ul class="mb-0 mt-2">
                     @foreach ($errors->all() as $error)
                       <li>{{ $error }}</li>
@@ -48,17 +48,17 @@
             @endif
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Forgot Password</h4></div>
+              <div class="card-header"><h4>{{ __('Forgot Password') }}</h4></div>
 
               <div class="card-body">
                 <p class="text-muted mb-4">
-                  Enter your email address and we'll send you a link to reset your password.
+                  {{ __('Enter your email address and we\'ll send you a link to reset your password.') }}
                 </p>
 
                 <form method="POST" action="{{ route('admin.forget-password-send') }}" class="needs-validation" novalidate="">
                   @csrf
                   <div class="form-group">
-                    <label for="email">Email Address</label>
+                    <label for="email">{{ __('Email Address') }}</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" tabindex="1" required autofocus>
                     @error('email')
                       <span class="invalid-feedback d-block" role="alert">
@@ -69,7 +69,7 @@
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="2">
-                      Send Reset Link
+                      {{ __('Send Reset Link') }}
                     </button>
                   </div>
                 </form>
@@ -78,10 +78,10 @@
 
             <div class="mt-5 text-muted text-center">
               <p>
-                Remember your password? <a href="{{ route('admin.login') }}" class="font-weight-bold">Back to Login</a>
+                {{ __('Remember your password?') }} <a href="{{ route('admin.login') }}" class="font-weight-bold">{{ __('Back to Login') }}</a>
               </p>
               <div class="simple-footer">
-                Copyright &copy; Web Solutions
+                {{ __('Copyright © Web Solutions') }}
               </div>
             </div>
           </div>

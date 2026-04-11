@@ -33,14 +33,14 @@ class AdminResetPasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'The email field is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'email.exists' => 'This email is not registered in our system.',
-            'password.required' => 'The password field is required.',
-            'password.min' => 'The password must be at least 8 characters.',
-            'password.confirmed' => 'The password confirmation does not match.',
-            'password_confirmation.required' => 'Please confirm your password.',
-            'token.required' => 'The reset token is missing.',
+            'email.required' => __('The email field is required.'),
+            'email.email' => __('The email must be a valid email address.'),
+            'email.exists' => __('This email is not registered in our system.'),
+            'password.required' => __('The password field is required.'),
+            'password.min' => __('The password must be at least 8 characters.'),
+            'password.confirmed' => __('The password confirmation does not match.'),
+            'password_confirmation.required' => __('Please confirm your password.'),
+            'token.required' => __('The reset token is missing.'),
         ];
     }
 }

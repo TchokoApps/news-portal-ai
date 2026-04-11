@@ -87,46 +87,46 @@
     <div class="email-container">
         <!-- Header -->
         <div class="email-header">
-            <h1>Password Reset Request</h1>
+            <h1>{{ __('Password Reset Request') }}</h1>
         </div>
 
         <!-- Body -->
         <div class="email-body">
-            <h2>Hello {{ $admin->name }},</h2>
+            <h2>{{ __('Hello') }} {{ $admin->name }},</h2>
 
-            <p>We received a request to reset the password associated with your admin account. If you did not make this request, you can ignore this email or reply to let us know.</p>
+            <p>{{ __('We received a request to reset the password associated with your admin account. If you did not make this request, you can ignore this email or reply to let us know.') }}</p>
 
-            <p>To reset your password, click the button below:</p>
+            <p>{{ __('To reset your password, click the button below:') }}</p>
 
             <div class="button-container">
-                <a href="{{ $resetUrl }}" class="button">Click here to Reset</a>
+                <a href="{{ $resetUrl }}" class="button">{{ __('Click here to Reset') }}</a>
             </div>
 
-            <p style="margin-top: 20px; font-size: 14px; color: #999;">Or copy and paste this link in your browser:</p>
+            <p style="margin-top: 20px; font-size: 14px; color: #999;">{{ __('Or copy and paste this link in your browser:') }}</p>
             <div class="copy-link">
                 {{ $resetUrl }}
             </div>
 
             <p style="color: #999; font-size: 13px; margin-top: 20px;">
-                This password reset link will expire in 60 minutes.
+                {{ __('This password reset link will expire in 60 minutes.') }}
             </p>
 
-            <p>If you have any questions or need assistance, please contact our support team.</p>
+            <p>{{ __('If you have any questions or need assistance, please contact our support team.') }}</p>
 
             <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-                Best regards,<br>
-                <strong>{{ config('app.name') }} Team</strong>
+                {{ __('Best regards,') }}<br>
+                <strong>{{ config('app.name') }} {{ __('Team') }}</strong>
             </p>
         </div>
 
         <!-- Footer -->
         <div class="email-footer">
             <p style="margin: 0 0 10px 0;">
-                &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
+                &copy; {{ date('Y') }} {{ config('app.name') }}. {{ __('All rights reserved.') }}
             </p>
             <div class="footer-links">
-                <a href="{{ route('home') }}">Website</a>
-                <a href="mailto:support@example.com">Support</a>
+                <a href="{{ route('home') }}">{{ __('Website') }}</a>
+                <a href="mailto:support@example.com">{{ __('Support') }}</a>
             </div>
         </div>
     </div>
