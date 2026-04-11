@@ -62,4 +62,11 @@ return [
 
     // General Password Reset
     'Password reset link has been sent to your email address.' => 'Password reset link has been sent to your email address.',
+
+    // Profile & Navbar
+    'Logged in now' => 'Logged in now',
+    'Profile' => 'Profile',
+    'Logout' => 'Logout',
+    'Profile updated successfully' => 'Profile updated successfully',
+    'Password updated successfully' => 'Password updated successfully',
 ];

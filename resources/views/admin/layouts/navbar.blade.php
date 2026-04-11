@@ -15,22 +15,16 @@
                 <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name ?? 'User' }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in now</div>
-                <a href="#" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
-                </a>
-                <a href="#" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> Activities
-                </a>
-                <a href="#" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
+                <div class="dropdown-title">{{ __('Logged in now') }}</div>
+                <a href="{{ route('profile.edit') }}" class="dropdown-item has-icon">
+                    <i class="far fa-user"></i> {{ __('Profile') }}
                 </a>
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
                     <button type="submit" class="dropdown-item has-icon text-danger"
                         style="border: none; background: none; width: 100%; text-align: left; cursor: pointer;">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                        <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                     </button>
                 </form>
             </div>
