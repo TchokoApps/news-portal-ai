@@ -32,6 +32,7 @@ return [
     'of' => 'of',
     'previous' => 'Previous',
     'next' => 'Next',
+    'select' => 'Select',
 
     // Alerts
     'success' => 'Success',
@@ -39,4 +40,8 @@ return [
     'warning' => 'Warning',
     'ok' => 'OK',
     'confirm' => 'Confirm',
+    'confirm_delete' => 'Confirm Delete',
+    'delete_warning' => 'Are you sure you want to delete this item? This action cannot be undone.',
+    'yes_delete' => 'Yes, Delete',
+    'delete_failed' => 'Failed to delete this item. Please try again.',
 ];

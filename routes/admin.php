@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthenticationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\CategoryController;
 
 // Admin Login Routes (without middleware)
 Route::group([
@@ -28,4 +29,7 @@ Route::group([
 
     // Language Management CRUD Routes
     Route::resource('language', LanguageController::class);
+
+    // Category Management CRUD Routes
+    Route::resource('category', CategoryController::class);
 });

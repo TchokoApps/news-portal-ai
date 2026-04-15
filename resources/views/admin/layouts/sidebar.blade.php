@@ -16,6 +16,9 @@
                     <a href="{{ route('admin.language.index') }}" class="nav-link"><span>Languages</span></a>
                 </li>
                 <li class="dropdown">
+                    <a href="{{ route('admin.category.index') }}" class="nav-link"><span>Categories</span></a>
+                </li>
+                <li class="dropdown">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><span>Layout</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
