@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +9,9 @@ Route::get('/', [NewsController::class, 'home'])->name('home');
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
+// Language switching
+Route::get('/language', LanguageController::class)->name('language.change');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');

@@ -24,10 +24,12 @@
             <div class="col-sm-6 col-md-4">
                 <div class="list-unstyled topbar-right d-flex align-items-center justify-content-end">
                     <div class="topbar_language">
-                        <select>
-                            <option>English</option>
-                            <option>Chines</option>
-                            <option>Korean</option>
+                        <select id="siteLanguage">
+                            @foreach(getActiveLanguages() as $language)
+                                <option value="{{ $language->code }}" @selected(getLanguage() === $language->code)>
+                                    {{ $language->name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 

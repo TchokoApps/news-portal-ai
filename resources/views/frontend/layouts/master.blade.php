@@ -29,6 +29,32 @@
 
     <script type="text/javascript" src="{{ asset('frontend/assets/js/index.bundle.js') }}"></script>
 
+    <script>
+        $(document).ready(function() {
+            // Handle language change via dropdown
+            $('#siteLanguage').on('change', function() {
+                const selectedLanguage = $(this).val();
+
+                $.ajax({
+                    url: "{{ route('language.change') }}",
+                    type: 'GET',
+                    data: {
+                        language_code: selectedLanguage
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            // Reload page to apply new language
+                            window.location.reload();
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Language change error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
