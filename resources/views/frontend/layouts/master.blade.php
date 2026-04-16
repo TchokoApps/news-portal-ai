@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Top News HTML template </title>
-    <meta name="description" content="">
+    <title>@yield('title', 'News Portal')</title>
+    <meta name="description" content="@yield('meta_description', 'Latest multilingual news updates')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('frontend/assets/css/styles.css') }}" rel="stylesheet">
 </head>
@@ -19,16 +19,9 @@
     </header>
     <!-- End Header news -->
 
-    <!-- Main Content Sections -->
-    @include('frontend.home-components.trending-carousel')
-
-    @include('frontend.home-components.popular-news-header')
-
-    @include('frontend.home-components.large-advertisement-banner')
-
-    @include('frontend.home-components.recent-posts-main')
-
-    @include('frontend.home-components.lifestyle-section')
+    <main>
+        @yield('content')
+    </main>
 
     @include('frontend.home-components.footer')
 

@@ -1,14 +1,13 @@
 <?php
 
+use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    if (auth()->check()) {
-        return redirect()->route('dashboard');
-    }
-    return view('frontend.layouts.master');
-})->name('home');
+Route::get('/', [NewsController::class, 'home'])->name('home');
+
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');

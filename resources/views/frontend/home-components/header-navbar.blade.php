@@ -19,10 +19,10 @@
                         <a class="nav-link active" href="{{ route('home') }}">home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#"> about </a>
+                        <a class="nav-link" href="{{ route('news.index') }}"> news </a>
                     </li>
                     <li class="nav-item dropdown has-megamenu">
-                        <a class="nav-link" href="#">blog </a>
+                        <a class="nav-link" href="{{ route('news.index', ['category' => request('category')]) }}">latest </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> Pages </a>

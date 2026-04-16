@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -48,5 +49,10 @@ class Admin extends Authenticatable
             'password' => 'hashed',
             'status' => 'boolean',
         ];
+    }
+
+    public function news(): HasMany
+    {
+        return $this->hasMany(News::class, 'author_id');
     }
 }
