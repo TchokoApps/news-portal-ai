@@ -69,3 +69,32 @@ function getActiveLanguages()
         ->orderBy('name')
         ->get();
 }
+
+/**
+ * Format number to K/M format (e.g., 1500 → 1.5K, 1000000 → 1M)
+ *
+ * @param int|float $number
+ * @return string|int
+ */
+function convertToKFormat($number)
+{
+    if ($number < 1000) {
+        return $number;
+    } elseif ($number < 1000000) {
+        return round($number / 1000, 1) . 'K';
+    } else {
+        return round($number / 1000000, 1) . 'M';
+    }
+}
+
+/**
+ * Truncate text to specified length
+ *
+ * @param string $text
+ * @param int $limit
+ * @return string
+ */
+function truncate($text, $limit = 50)
+{
+    return \Illuminate\Support\Str::limit($text, $limit);
+}

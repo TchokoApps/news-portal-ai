@@ -23,6 +23,7 @@ class News extends Model
         'show_at_slider',
         'show_at_popular',
         'status',
+        'views',
     ];
 
     protected $casts = [
@@ -30,6 +31,7 @@ class News extends Model
         'show_at_slider' => 'boolean',
         'show_at_popular' => 'boolean',
         'status' => 'boolean',
+        'views' => 'integer',
     ];
 
     public function category(): BelongsTo
@@ -62,5 +64,21 @@ class News extends Model
         }
 
         return asset($this->image);
+    }
+
+    /**
+     * Scope: Filter active entries (published news)
+     */
+    public function scopeActiveEntries($query)
+    {
+        return $query->where('status', true);
+    }
+
+    /**
+     * Scope: Filter by current language
+     */
+    public function scopeWithLocalized($query)
+    {
+        return $query->where('language', getLanguage());
     }
 }

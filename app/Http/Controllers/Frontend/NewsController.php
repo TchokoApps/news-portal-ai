@@ -102,6 +102,10 @@ class NewsController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
+        // Count view with session protection
+        $this->countView($news);
+
+        // Fetch related news by category
         $relatedNews = News::query()
             ->with(['category', 'author'])
             ->where('status', true)
@@ -112,6 +116,7 @@ class NewsController extends Controller
             ->take(4)
             ->get();
 
+        // Fetch popular news for sidebar
         $popularNews = News::query()
             ->with('category')
             ->where('status', true)
@@ -121,7 +126,39 @@ class NewsController extends Controller
             ->take(5)
             ->get();
 
-        return view('frontend.news.show', compact('news', 'relatedNews', 'popularNews', 'language'));
+        // Fetch recent posts for sidebar (excluding current news)
+        $recentNews = News::query()
+            ->with(['category', 'author'])
+            ->where('status', true)
+            ->where('language', $language)
+            ->where('slug', '!=', $slug)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        return view('frontend.news.show', compact('news', 'relatedNews', 'popularNews', 'recentNews', 'language'));
+    }
+
+    /**
+     * Count view with session protection to prevent duplicate counting
+     *
+     * @param News $news
+     * @return void
+     */
+    private function countView(News $news): void
+    {
+        if (session()->has('viewed_posts')) {
+            $postIds = session('viewed_posts');
+
+            if (!in_array($news->id, $postIds)) {
+                $news->increment('views');
+                $postIds[] = $news->id;
+                session(['viewed_posts' => $postIds]);
+            }
+        } else {
+            session(['viewed_posts' => [$news->id]]);
+            $news->increment('views');
+        }
     }
 
     private function publishedNewsQuery(string $language)
